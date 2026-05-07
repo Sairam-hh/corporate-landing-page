@@ -197,6 +197,51 @@ nav{
 .nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
+
+
+.footer-col-title{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:22px;
+  color:#ffffff;
+}
+
+.footer-links{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-links li{
+  margin-bottom:14px;
+}
+
+.footer-links a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:#cbd5e1;
+  font-size:16px;
+  transition:0.3s ease;
+}
+
+.footer-links a i{
+  width:18px;
+  color:#38bdf8;
+  font-size:15px;
+}
+
+.footer-links a:hover{
+  color:#ffffff;
+  transform:translateX(6px);
+}
+
+.footer-links a:hover i{
+  color:#7dd3fc;
+}
+
+
 /* ── MOBILE FULLSCREEN MENU ── */
 @media(max-width:768px){
   .nav-links{
@@ -808,7 +853,7 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 <!-- NAV -->
 <nav role="navigation" aria-label="Main navigation">
   <!-- UPDATED: Logo with image + text linking to external site -->
-  <a class="nav-logo-link" href="https://king18-lab.github.io/stackly2026/" target="_blank" rel="noopener" aria-label="Stackly Digital Banking">
+  <a class="nav-logo-link"  rel="noopener" aria-label="Stackly Digital Banking">
     <img class="nav-logo-img" src="https://king18-lab.github.io/stackly2026/favicon.ico" alt="Stackly logo"
       onerror="this.style.display='none'">
     <span class="nav-logo">Stack<span>ly</span></span>
@@ -1427,7 +1472,7 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
   <div class="footer-top">
     <!-- Brand column -->
     <div>
-      <a class="footer-logo-wrap" href="https://king18-lab.github.io/stackly2026/" target="_blank" rel="noopener">
+      <a class="footer-logo-wrap"  rel="noopener">
         <img class="footer-logo-img" src="https://king18-lab.github.io/stackly2026/favicon.ico" alt="Stackly logo"
           onerror="this.style.display='none'">
         <span class="footer-logo">Stack<span>ly</span></span>
@@ -1438,12 +1483,51 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
         <span>📧 <a href="mailto:it_solution@stackly.io">it_solution@stackly.io</a></span>
         <span>📍 Salem, Chennai</span>
       </div>
-      <div class="footer-socials">
-        <a href="#" class="fsocial" onclick="show404();return false;" title="Facebook">fb</a>
-        <a href="#" class="fsocial" onclick="show404();return false;" title="Twitter">tw</a>
-        <a href="#" class="fsocial" onclick="show404();return false;" title="LinkedIn">in</a>
-        <a href="#" class="fsocial" onclick="show404();return false;" title="YouTube">yt</a>
-      </div>
+      <!-- FONT AWESOME CDN -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!-- FOOTER SOCIALS -->
+
+<div class="footer-socials">
+
+  <a href="#"
+     class="fsocial facebook"
+     onclick="show404();return false;"
+     title="Facebook">
+
+     <i class="fab fa-facebook-f"></i>
+
+  </a>
+
+  <a href="#"
+     class="fsocial twitter"
+     onclick="show404();return false;"
+     title="Twitter">
+
+     <i class="fab fa-x-twitter"></i>
+
+  </a>
+
+  <a href="#"
+     class="fsocial linkedin"
+     onclick="show404();return false;"
+     title="LinkedIn">
+
+     <i class="fab fa-linkedin-in"></i>
+
+  </a>
+
+  <a href="#"
+     class="fsocial youtube"
+     onclick="show404();return false;"
+     title="YouTube">
+
+     <i class="fab fa-youtube"></i>
+
+  </a>
+
+</div>
     </div>
 
     <!-- Resources -->
@@ -1473,19 +1557,101 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
     </div>
 
     <!-- Quick Links — NEW COLUMN -->
-    <div>
-      <div class="footer-col-title">Quick Links</div>
-      <ul class="footer-links">
-        <li><a href="#" onclick="goHome();return false;">🏠 Home</a></li>
-        <li><a href="#about" onclick="show404();return false;">👥 About Us</a></li>
-        <li><a href="#services" onclick="show404();return false;">⚙️ Services</a></li>
-        <li><a href="#pricing" onclick="show404();return false;">💰 Pricing</a></li>
-        <li><a href="#blog" onclick="show404();return false;">📝 Blog</a></li>
-        <li><a href="#contact" onclick="show404();return false;">📞 Contact</a></li>
-        <li><a href="#" onclick="show404();return false;">🔑 Login</a></li>
-        <li><a href="#" onclick="show404();return false;">🚀 Sign Up</a></li>
-      </ul>
-    </div>
+    <!-- FONT AWESOME CDN -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<div>
+
+  <div class="footer-col-title">
+    Quick Links
+  </div>
+
+  <ul class="footer-links">
+
+    <li>
+      <a href="#"
+         onclick="goHome();return false;">
+
+         <i class="fas fa-house"></i>
+         Home
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#about"
+         onclick="show404();return false;">
+
+         <i class="fas fa-users"></i>
+         About Us
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#services"
+         onclick="show404();return false;">
+
+         <i class="fas fa-gear"></i>
+         Services
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#pricing"
+         onclick="show404();return false;">
+
+         <i class="fas fa-wallet"></i>
+         Pricing
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#blog"
+         onclick="show404();return false;">
+
+         <i class="fas fa-pen"></i>
+         Blog
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#contact"
+         onclick="show404();return false;">
+
+         <i class="fas fa-phone"></i>
+         Contact
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#"
+         onclick="show404();return false;">
+
+         <i class="fas fa-right-to-bracket"></i>
+         Login
+
+      </a>
+    </li>
+
+    <li>
+      <a href="#"
+         onclick="show404();return false;">
+
+         <i class="fas fa-user-plus"></i>
+         Sign Up
+
+      </a>
+    </li>
+
+  </ul>
+
+</div>
 
     <!-- Office Hours -->
     <div>
