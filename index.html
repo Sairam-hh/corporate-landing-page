@@ -32,6 +32,71 @@ body{font-family:'Barlow',sans-serif;background:#0b0e17;color:#c8cfe0;overflow-x
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 
+/* ── LOADER ── */
+#page-loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2rem;
+  transition:opacity 0.6s ease, visibility 0.6s ease;
+}
+#page-loader.loaded{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.loader-logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:3rem;font-weight:800;
+  color:var(--white);letter-spacing:0.04em;
+  animation:loaderPulse 1.5s ease-in-out infinite;
+}
+.loader-logo span{color:var(--blue)}
+.loader-bar-wrap{
+  width:200px;height:3px;
+  background:rgba(255,255,255,0.08);
+  border-radius:3px;overflow:hidden;
+}
+.loader-bar{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--blue),var(--blue-light));
+  border-radius:3px;
+  animation:loaderFill 2.8s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+.loader-dots{display:flex;gap:8px;margin-top:0.5rem}
+.loader-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--blue);opacity:0.3;
+  animation:loaderDot 1.2s ease-in-out infinite;
+}
+.loader-dot:nth-child(2){animation-delay:0.2s}
+.loader-dot:nth-child(3){animation-delay:0.4s}
+.loader-text{
+  font-size:0.78rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text2);
+  animation:loaderFadeIn 0.5s ease 0.3s both;
+}
+@keyframes loaderPulse{0%,100%{opacity:0.85}50%{opacity:1}}
+@keyframes loaderFill{0%{width:0%}60%{width:75%}85%{width:92%}100%{width:100%}}
+@keyframes loaderDot{0%,80%,100%{opacity:0.2;transform:scale(0.8)}40%{opacity:1;transform:scale(1.2)}}
+@keyframes loaderFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Grid glow behind loader logo */
+.loader-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(37,99,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,255,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.loader-glow{
+  position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(37,99,255,0.14) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
 /* ── TOPBAR ── */
 .topbar{
   background:var(--dark2);
@@ -67,7 +132,9 @@ nav{
   font-size:1.75rem;font-weight:800;
   color:var(--white);letter-spacing:0.02em;
   flex-shrink:0;cursor:pointer;
+  transition:opacity 0.2s;
 }
+.nav-logo:hover{opacity:0.85}
 .nav-logo span{color:var(--blue)}
 .nav-links{display:flex;gap:0.25rem;list-style:none;align-items:center}
 .nav-links>li>a{
@@ -107,6 +174,7 @@ nav{
 .nav-toggle{
   display:none;flex-direction:column;gap:5px;cursor:pointer;
   padding:6px;border:none;background:transparent;
+  z-index:301;position:relative;
 }
 .nav-toggle span{
   display:block;width:24px;height:2px;
@@ -116,6 +184,84 @@ nav{
 .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-toggle.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── MOBILE FULLSCREEN MENU ── */
+@media(max-width:768px){
+  .nav-links{
+    display:flex;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    width:100vw;height:100vh;
+    background:rgba(7,9,15,0.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0.5rem;
+    padding:5rem 2rem 3rem;
+    z-index:300;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.35s ease;
+    overflow-y:auto;
+    list-style:none;
+  }
+  .nav-links.open{
+    opacity:1;
+    pointer-events:all;
+  }
+  .nav-links>li{width:100%;text-align:center}
+  .nav-links>li>a{
+    display:block;
+    padding:1rem 1.5rem;
+    font-size:1.25rem !important;
+    font-weight:700;
+    border-radius:8px;
+    text-align:center;
+    border:1px solid transparent;
+    transition:all 0.2s;
+  }
+  .nav-links>li>a:hover{
+    border-color:var(--border2);
+    background:rgba(37,99,255,0.08);
+  }
+  .btn-nav{
+    margin-top:0.5rem;
+    text-align:center !important;
+    width:100% !important;
+    justify-content:center !important;
+    padding:1rem 1.5rem !important;
+    font-size:1.1rem !important;
+  }
+  .btn-login{
+    width:100% !important;
+    justify-content:center !important;
+    margin-top:0.25rem !important;
+    padding:1rem 1.5rem !important;
+    font-size:1.1rem !important;
+  }
+  .nav-toggle{display:flex}
+
+  /* Mobile menu logo inside overlay */
+  .nav-mobile-brand{
+    display:block;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:2rem;font-weight:800;
+    color:var(--white);
+    letter-spacing:0.04em;
+    margin-bottom:1.5rem;
+    opacity:0.9;
+  }
+  .nav-mobile-brand span{color:var(--blue)}
+  .nav-mobile-divider{
+    width:40px;height:2px;
+    background:var(--blue);
+    border-radius:2px;
+    margin:0 auto 1.5rem;
+    opacity:0.6;
+  }
+}
 
 /* ── LOGIN MODAL ── */
 .modal-overlay{
@@ -1081,7 +1227,9 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
   font-family:'Barlow Condensed',sans-serif;
   font-size:1.6rem;font-weight:800;color:var(--white);
   display:block;margin-bottom:0.75rem;letter-spacing:0.02em;cursor:pointer;
+  transition:opacity 0.2s;
 }
+.footer-logo:hover{opacity:0.85}
 .footer-logo span{color:var(--blue)}
 .footer-tagline{font-size:0.875rem;color:var(--text2);line-height:1.65;max-width:240px;margin-bottom:1.25rem}
 .footer-contact{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem}
@@ -1142,20 +1290,6 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 }
 
 @media(max-width:768px){
-  .nav-links{
-    display:none;flex-direction:column;
-    position:absolute;top:72px;left:0;right:0;
-    background:rgba(11,14,23,0.98);
-    border-bottom:1px solid var(--border);
-    padding:1rem 5% 1.5rem;gap:0.25rem;
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-  }
-  .nav-links.open{display:flex}
-  .nav-links>li{width:100%}
-  .nav-links>li>a{display:block;padding:0.75rem 1rem;border-radius:6px}
-  .btn-nav{margin-top:0.25rem;text-align:center !important}
-  .btn-login{width:100% !important;justify-content:center !important;margin-top:0.25rem !important}
   .nav-toggle{display:flex}
   .hero-inner{padding:5.5rem 5% 3.5rem;gap:2rem}
   .hero-stats{gap:1.25rem}
@@ -1206,6 +1340,22 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 </style>
 </head>
 <body>
+
+<!-- ── PAGE LOADER ── -->
+<div id="page-loader" role="status" aria-label="Loading Stackly">
+  <div class="loader-grid" aria-hidden="true"></div>
+  <div class="loader-glow" aria-hidden="true"></div>
+  <div class="loader-logo">Stack<span>ly</span></div>
+  <div class="loader-text">Initializing Systems...</div>
+  <div class="loader-bar-wrap">
+    <div class="loader-bar"></div>
+  </div>
+  <div class="loader-dots" aria-hidden="true">
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+  </div>
+</div>
 
 <!-- ── LOGIN MODAL ── -->
 <div class="modal-overlay" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -1298,24 +1448,34 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 
 <!-- NAV -->
 <nav role="navigation" aria-label="Main navigation">
-  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Stack<span>ly</span></div>
+  <div class="nav-logo" id="nav-logo-btn" onclick="goHome()" role="button" tabindex="0" aria-label="Stackly - Go to homepage">Stack<span>ly</span></div>
   <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links" role="list">
-    <li><a href="#" class="active">Home</a></li>
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <!-- Mobile brand shown inside menu -->
+    <li class="nav-mobile-brand-li" style="list-style:none;text-align:center">
+      <span class="nav-mobile-brand">Stack<span>ly</span></span>
+      <div class="nav-mobile-divider"></div>
+    </li>
+    <li><a href="#" class="active" onclick="closeMobileNav();goHome();return false;">Home</a></li>
+    <li><a href="#about" onclick="closeMobileNav()">About Us</a></li>
+    <li><a href="#services" onclick="closeMobileNav()">Services</a></li>
+    <li><a href="#pricing" onclick="closeMobileNav()">Pricing</a></li>
+    <li><a href="#blog" onclick="closeMobileNav()">Blog</a></li>
+    <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
     <li>
       <button class="btn-login" id="openLoginBtn" type="button">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Login
       </button>
     </li>
-    <li><a href="#" class="btn-nav" onclick="show404();return false;">Get Started</a></li>
+    <li>
+      <a href="#" class="btn-nav" onclick="show404();return false;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Sign Up
+      </a>
+    </li>
   </ul>
 </nav>
 
@@ -1986,12 +2146,12 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 <footer>
   <div class="footer-top">
     <div>
-      <span class="footer-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Stack<span>ly</span></span>
+      <span class="footer-logo" onclick="goHome()">Stack<span>ly</span></span>
       <p class="footer-tagline">Developing personalized customer journeys to increase satisfaction &amp; loyalty. Expansion recognized by industry leaders.</p>
       <div class="footer-contact">
-        <span>📞 <a href="tel:+18885550199">+91 7995358828</a></span>
+        <span>📞 <a href="tel:+917995358828">+91 7995358828</a></span>
         <span>📧 <a href="mailto:it_solution@stackly.io">it_solution@stackly.io</a></span>
-        <span>📍 salem,chennai</span>
+        <span>📍 Salem, Chennai</span>
       </div>
       <div class="footer-socials">
         <a href="#" class="fsocial" onclick="show404();return false;">fb</a>
@@ -2042,6 +2202,26 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 (function () {
   'use strict';
 
+  /* ── LOADER ── */
+  var loader = document.getElementById('page-loader');
+  setTimeout(function() {
+    loader.classList.add('loaded');
+    document.body.style.overflow = '';
+  }, 3000);
+  // Prevent scroll during load
+  document.body.style.overflow = 'hidden';
+
+  /* ── goHome helper ── */
+  window.goHome = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Update active nav
+    document.querySelectorAll('.nav-links a').forEach(function(a){
+      a.classList.remove('active');
+    });
+    var homeLink = document.querySelector('.nav-links a[href="#"]');
+    if (homeLink) homeLink.classList.add('active');
+  };
+
   /* ── Global show404 ── */
   window.show404 = function() {
     var modal = document.getElementById('loginModal');
@@ -2069,17 +2249,40 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
   /* ── Mobile nav toggle ── */
   var navToggle = document.getElementById('nav-toggle');
   var navLinks  = document.getElementById('nav-links');
+
+  window.closeMobileNav = function() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
   navToggle.addEventListener('click', function () {
     var open = navLinks.classList.toggle('open');
     navToggle.classList.toggle('open', open);
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    // Prevent body scroll when mobile menu open
+    document.body.style.overflow = open ? 'hidden' : '';
   });
+
+  // Close mobile nav on anchor link click
   navLinks.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () {
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+      closeMobileNav();
     });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMobileNav();
+    }
+  });
+
+  /* ── Logo keyboard nav ── */
+  var navLogoBrn = document.getElementById('nav-logo-btn');
+  navLogoBrn.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); goHome(); }
   });
 
   /* ── LOGIN MODAL ── */
@@ -2109,7 +2312,10 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
     passInput.value  = '';
   }
 
-  openBtn.addEventListener('click', openModal);
+  openBtn.addEventListener('click', function(){
+    closeMobileNav();
+    openModal();
+  });
   closeBtn.addEventListener('click', closeModal);
 
   modal.addEventListener('click', function (e) {
@@ -2231,8 +2437,23 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
       a.classList.remove('active');
       if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
     });
+    // If at very top, highlight Home
+    if (window.scrollY < 100) {
+      document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
+      var homeA = document.querySelector('.nav-links a[href="#"]');
+      if (homeA) homeA.classList.add('active');
+    }
   }
   window.addEventListener('scroll', updateNav, { passive: true });
+
+  /* Hide mobile brand li on desktop */
+  function checkMobileBrand() {
+    var brandLi = document.querySelector('.nav-mobile-brand-li');
+    if (!brandLi) return;
+    brandLi.style.display = window.innerWidth <= 768 ? 'block' : 'none';
+  }
+  checkMobileBrand();
+  window.addEventListener('resize', checkMobileBrand);
 
 }());
 </script>
