@@ -842,12 +842,51 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
       Salem, Chennai
     </span>
   </div>
-  <div class="topbar-socials">
-    <a href="#" onclick="show404();return false;" aria-label="Facebook">fb</a>
-    <a href="#" onclick="show404();return false;" aria-label="Twitter">tw</a>
-    <a href="#" onclick="show404();return false;" aria-label="LinkedIn">in</a>
-    <a href="#" onclick="show404();return false;" aria-label="YouTube">yt</a>
-  </div>
+  <!-- FONT AWESOME CDN -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<!-- FOOTER SOCIALS -->
+
+<div class="footer-socials">
+
+  <a href="#"
+     class="fsocial facebook"
+     onclick="show404();return false;"
+     title="Facebook">
+
+     <i class="fab fa-facebook-f"></i>
+
+  </a>
+
+  <a href="#"
+     class="fsocial twitter"
+     onclick="show404();return false;"
+     title="Twitter">
+
+     <i class="fab fa-x-twitter"></i>
+
+  </a>
+
+  <a href="#"
+     class="fsocial linkedin"
+     onclick="show404();return false;"
+     title="LinkedIn">
+
+     <i class="fab fa-linkedin-in"></i>
+
+  </a>
+
+  <a href="#"
+     class="fsocial youtube"
+     onclick="show404();return false;"
+     title="YouTube">
+
+     <i class="fab fa-youtube"></i>
+
+  </a>
+
+</div>
 </div>
 
 <!-- NAV -->
@@ -856,7 +895,8 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
   <a class="nav-logo-link"  rel="noopener" aria-label="Stackly Digital Banking">
     <img class="nav-logo-img" src="https://king18-lab.github.io/stackly2026/favicon.ico" alt="Stackly logo"
       onerror="this.style.display='none'">
-    <span class="nav-logo">Stack<span>ly</span></span>
+      <!-- when we click the name then it should navigate to the home page -->
+    <a href="#"><span  class="nav-logo" >Stack<span>ly</span></span></a>
   </a>
 
   <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
@@ -1475,7 +1515,7 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
       <a class="footer-logo-wrap"  rel="noopener">
         <img class="footer-logo-img" src="https://king18-lab.github.io/stackly2026/favicon.ico" alt="Stackly logo"
           onerror="this.style.display='none'">
-        <span class="footer-logo">Stack<span>ly</span></span>
+        <a href="#"><span class="footer-logo">Stack<span>ly</span></span></a>
       </a>
       <p class="footer-tagline">Developing personalized customer journeys to increase satisfaction &amp; loyalty. Expansion recognized by industry leaders.</p>
       <div class="footer-contact">
