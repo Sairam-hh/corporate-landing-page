@@ -199,6 +199,14 @@ nav{
 
 
 
+/* logo image */
+.logo img{
+  width:120px;
+  display: block;
+}
+
+
+
 .footer-col-title{
   font-size:22px;
   font-weight:700;
@@ -755,7 +763,10 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
 <div id="page-loader" role="status" aria-label="Loading Stackly">
   <div class="loader-grid" aria-hidden="true"></div>
   <div class="loader-glow" aria-hidden="true"></div>
-  <div class="loader-logo">STACK<span>LY</span></div>
+  <!-- <div class="loader-logo">STACK<span>LY</span></div> -->
+    <a href="index.html" class="logo">
+      <img src="./images/stackly-logo 3.webp" alt="stackly logo">
+     </a>
   <div class="loader-text">Initializing Systems...</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   <div class="loader-dots" aria-hidden="true">
@@ -857,7 +868,10 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
   <a class="nav-logo-link" href="javascript:location.reload();" aria-label="Stackly — Go to homepage">
     <img class="nav-logo-img" src="https://king18-lab.github.io/stackly2026/favicon.ico" alt="Stackly logo"
       onerror="this.style.display='none'">
-    <span class="nav-logo">STACK<span>LY</span></span>
+    <!-- <span class="nav-logo">STACK<span>LY</span></span> -->
+     <a href="index.html" class="logo">
+      <img src="./images/stackly-logo 3.webp" alt="stackly logo">
+     </a>
   </a>
 
   <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
@@ -868,12 +882,12 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
       <span class="nav-mobile-brand">Stack<span>ly</span></span>
       <div class="nav-mobile-divider"></div>
     </li>
-    <li><a href="#" class="active" onclick="closeMobileNav();goHome();return false;">Home</a></li>
-    <li><a href="#about" onclick="closeMobileNav()">About Us</a></li>
-    <li><a href="#services" onclick="closeMobileNav()">Services</a></li>
-    <li><a href="#pricing" onclick="closeMobileNav()">Pricing</a></li>
-    <li><a href="#blog" onclick="closeMobileNav()">Blog</a></li>
-    <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
+    <li><a href="index.html" class="active" >Home</a></li>
+    <li><a href="#about" onclick="show404();return false;">About Us</a></li>
+    <li><a href="#services" onclick="show404();return false;">Services</a></li>
+    <li><a href="#pricing" onclick="show404();return false;">Pricing</a></li>
+    <li><a href="#blog" onclick="show404();return false;">Blog</a></li>
+    <li><a href="#contact" onclick="show404();return false;">Contact</a></li>
     <li>
       <button class="btn-login" id="openLoginBtn" type="button">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1474,7 +1488,10 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
       <a class="footer-logo-wrap" href="javascript:location.reload();" aria-label="Stackly — Go to homepage">
         <img class="footer-logo-img" src="https://king18-lab.github.io/stackly2026/favicon.ico" alt="Stackly logo"
           onerror="this.style.display='none'">
-        <span class="footer-logo">STACK<span>LY</span></span>
+        <!-- <span class="footer-logo">STACK<span>LY</span></span> -->
+          <a href="index.html" class="logo">
+      <img src="./images/stackly-logo 3.webp" alt="stackly logo">
+     </a>
       </a>
       <p class="footer-tagline">Developing personalized customer journeys to increase satisfaction &amp; loyalty. Expansion recognized by industry leaders.</p>
       <div class="footer-contact">
@@ -1559,12 +1576,12 @@ footer{background:#07090f;padding:4rem 5% 2rem;border-top:1px solid var(--border
   document.body.style.overflow = 'hidden';
 
   /* ── goHome helper ── */
-  window.goHome = function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
-    var homeLink = document.querySelector('.nav-links a[href="#"]');
-    if (homeLink) homeLink.classList.add('active');
-  };
+  // window.goHome = function() {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  //   document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
+  //   var homeLink = document.querySelector('.nav-links a[href="#"]');
+  //   if (homeLink) homeLink.classList.add('active');
+  // };
 
   /* ── Global show404 ── */
   window.show404 = function() {
